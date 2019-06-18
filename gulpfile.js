@@ -45,7 +45,13 @@ gulp.task('sass', function () {
         .pipe(browserSync.stream());
 });
 
-gulp.task('serve', gulp.series('sass', 'scripts', 'assets', function () {
+gulp.task('index', function () {
+    return gulp
+        .src('./app/index.html')
+        .pipe(gulp.dest('./dist'));
+});
+
+gulp.task('serve', gulp.series('sass', 'scripts', 'assets', 'index', function () {
     browserSync.init({
         server: './dist',
         open: true
@@ -53,9 +59,10 @@ gulp.task('serve', gulp.series('sass', 'scripts', 'assets', function () {
     gulp.watch('app/scss/**/*', gulp.series('sass'));
     gulp.watch('app/js/*.js', gulp.series('scripts'));
     gulp.watch('app/assets/**/*', gulp.series('assets'));
+    gulp.watch('app/index.html', gulp.series('index'));
     gulp.watch('dist/*.html').on('change', browserSync.reload);
     gulp.watch('dist/js/*.js').on('change', browserSync.reload);
 }));
 
-gulp.task('build', gulp.series('sass', 'scripts', 'assets'));
+gulp.task('build', gulp.series('sass', 'scripts', 'assets', 'index'));
 gulp.task('default', gulp.series('serve'));
