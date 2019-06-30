@@ -8,6 +8,15 @@ const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
+var deploy = require('gulp-gh-pages');
+
+gulp.task('deploy', function () {
+    return gulp.src("./prod/**/*")
+        .pipe(deploy({
+            remoteUrl: "https://github.com/BurdalskiBartosz/Weekly-WebDev-Challenge-1.github.io",
+            branch: "master"
+        }))
+});
 
 const errorHandler = r => {
     notify.onError('\n\n❌  ===> ERROR: <%= error.message %>\n')(r);
@@ -35,7 +44,7 @@ gulp.task('scripts', function () {
 
 gulp.task('sass', function () {
     return gulp
-        .src('./app/scss/main.scss')
+        .src('./app/scss/style.scss')
         .pipe(sourcemaps.init())
         .pipe(plumber(() => { notify.onError('\n\n❌  ===> SASS ERROR %>\n') }))
         .pipe(sass().on('error', sass.logError))
