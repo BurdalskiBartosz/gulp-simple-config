@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "babel-preset-env": "^1.7.0",
     "browser-sync": "^2.26.7",
     "browserify": "^16.2.3",
@@ -23,7 +25,5 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2"
   },
-  "dependencies": {
-    "@babel/core": "^7.4.5"
-  }
+  "dependencies": {}
 }

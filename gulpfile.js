@@ -24,7 +24,7 @@ gulp.task('scripts', function () {
         .pipe(plumber(errorHandler))
         .pipe(
             babel({
-                presets: ['env']
+                presets: ["@babel/preset-env"]
             })
         )
         .pipe(browserify())
