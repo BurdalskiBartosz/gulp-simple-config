@@ -8,6 +8,9 @@ const uglify = require('gulp-uglify');
 const babel = require('gulp-babel');
 const plumber = require('gulp-plumber');
 const notify = require('gulp-notify');
+const replace = require('gulp-replace');
+
+const directory = "add_here_your_path";
 
 const errorHandler = r => {
     notify.onError('\n\n❌  ===> ERROR: <%= error.message %>\n')(r);
@@ -41,6 +44,7 @@ gulp.task('sass', function () {
         .pipe(sass().on('error', sass.logError))
         .pipe(autoprefixer())
         .pipe(sourcemaps.write("."))
+        .pipe(replace('url("../../assets/pictures', 'url("..' + directory))
         .pipe(gulp.dest('./dist/css'))
         .pipe(browserSync.stream());
 });

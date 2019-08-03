@@ -25,5 +25,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gulp-replace": "^1.0.0"
+  }
 }
